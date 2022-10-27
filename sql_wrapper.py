@@ -25,3 +25,14 @@ class Sql_wrapper:
         con.close()
         return pd.DataFrame(returns)
 
+    def input_data(self,data:tuple,table:str):
+        con = self.engine()
+        try:
+            con.execute(f"""
+            INSERT INTO {table} VALUES
+            {data};
+            """)
+            con.close()
+            return f"Inputting successful into table"
+        except:
+            return "Insertion failed."

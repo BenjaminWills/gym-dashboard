@@ -1,7 +1,13 @@
-import sqlalchemy as SQLA
 import pandas as pd
+import sqlalchemy as SQLA
+
 
 class Sql_wrapper:
+    
+    """
+    Wrapper for sqlalchemy to query a postgresql db.
+    """
+
     def __init__(self,username:str,password:str,host:str,port:str,db_name:str):
         engine = SQLA.create_engine(f"postgresql://{username}:{password}@{host}:{port}/{db_name}")
         self.engine = engine

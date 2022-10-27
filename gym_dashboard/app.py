@@ -1,5 +1,6 @@
 import dash_bootstrap_components as dbc
-from dash import Dash, html, page_container, page_registry
+from dash import Dash, callback, html, page_container, page_registry
+from utilities import *
 
 app = Dash(__name__, use_pages=True,external_stylesheets=[dbc.themes.MINTY])
 
@@ -22,11 +23,28 @@ navbar = dbc.NavbarSimple(
     dark=True,
 )
 
-
+cards = dbc.CardGroup(
+    [
+        dbc.Card(
+            dbc.CardBody(f"Age: {get_age()}")
+        ),
+        dbc.Card(
+            dbc.CardBody(f"Name: Ben Wills")
+        ),
+        dbc.Card(
+            dbc.CardBody(f"Current time: {3}",
+            id = "current_time")
+        ),
+    ]
+)
 
 app.layout = html.Div([navbar,
-	page_container
+	page_container,
+    cards,
     ])
 
+@callback()
+def placeholder():
+    pass
 if __name__ == "__main__":
     app.run_server(host="0.0.0.0", debug=True, port=8080)

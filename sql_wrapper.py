@@ -12,27 +12,34 @@ class Sql_wrapper:
         Parameters
         ----------
         query : str
-            A string 
+            A string containing the query to be executed.
 
         Returns
         -------
         pd.DataFrame
-            _description_
+            Pandas data frame containing query output.
         """
-        con = self.engine.connect()
-        results = con.execute(query)
-        returns = results.fetchall()
-        con.close()
-        return pd.DataFrame(returns)
+        try:
+            con = self.engine.connect()
+            results = con.execute(query)
+            returns = results.fetchall()
+            return pd.DataFrame(returns)
+        except:
+            return "Query failed"
+        finally:
+            con.close()
+        
 
     def input_data(self,data:tuple,table:str):
+        
         con = self.engine()
         try:
             con.execute(f"""
             INSERT INTO {table} VALUES
             {data};
             """)
-            con.close()
             return f"Inputting successful into table"
         except:
             return "Insertion failed."
+        finally:
+            con.close()

@@ -1,2 +1,3 @@
 .env
-sql_template.sql
+*.pyc
+tester.ipynb

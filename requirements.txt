@@ -1,3 +1,4 @@
 postgresql
 psycopg2
 pandas
+numpy

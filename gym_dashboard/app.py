@@ -1,5 +1,7 @@
 import dash_bootstrap_components as dbc
-from dash import Dash, callback, html, page_container, page_registry
+from dash import (Dash, Input, Output, callback, html, page_container,
+                  page_registry)
+from dash_core_components import Interval
 from utilities import *
 
 app = Dash(__name__, use_pages=True,external_stylesheets=[dbc.themes.MINTY])
@@ -31,20 +33,24 @@ cards = dbc.CardGroup(
         dbc.Card(
             dbc.CardBody(f"Name: Ben Wills")
         ),
-        dbc.Card(
-            dbc.CardBody(f"Current time: {3}",
-            id = "current_time")
-        ),
     ]
 )
 
-app.layout = html.Div([navbar,
+app.layout = html.Div(
+    children=[navbar,
 	page_container,
     cards,
+    html.Div(f"Current time: {get_current_time()}",id = "current_time"),
+    Interval(id = "interval",interval = 1000, n_intervals=0)
     ])
 
-@callback()
-def placeholder():
-    pass
+@callback(
+    Output('current_time','children'),
+    Input('interval','n_intervals')
+)
+
+def update_time(n_intervals):
+    return f"Current time: {get_current_time()}"
+
 if __name__ == "__main__":
     app.run_server(host="0.0.0.0", debug=True, port=8080)

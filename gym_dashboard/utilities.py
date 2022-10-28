@@ -22,7 +22,9 @@ def get_age(DOB:str = "07/03/2001") -> int:
     difference_in_years = difference.days / 365
     return int(floor(difference_in_years))
 
-
+def get_current_time():
+    current_time = datetime.datetime.now()
+    return current_time.strftime("%H:%M:%S")
 if __name__ == "__main__":
-    print(get_age())
+    print(get_current_time())
 

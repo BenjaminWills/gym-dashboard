@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter.filedialog import askopenfile
 
 from PIL import Image, ImageTk
 
@@ -19,11 +20,24 @@ logo_label.grid(column=1, row=0)
 instructions = Label(root, text="Press the button below!", font="Raleway")
 instructions.grid(columnspan=3, column=0, row=1)
 
+# Browse function
+
+
+def open_file():
+    browse_text.set("loading...")
+
+    file = askopenfile(parent=root, mode="rb", title="Choose a file!")
+
+    if file:
+        print(file.name)
+
+
 # Browse button
 browse_text = StringVar()
 browse_btn = Button(
     root,
     textvariable=browse_text,
+    command=lambda: open_file(),
     font="Raleway",
     bg="#808080",
     fg="black",

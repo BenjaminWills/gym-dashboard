@@ -18,7 +18,7 @@ class Sql_wrapper:
         # Make `postgresql` logger
         mkdir_if_not_exists("./logs")
         self.logger = make_logger(
-            logging_path="./log/postgresql.log",
+            logging_path="./logs/postgresql.log",
         )
 
     def execute_query(self,query:str) -> pd.DataFrame:

@@ -1,6 +1,8 @@
 import pandas as pd
 import sqlalchemy as SQLA
 
+from utilities.logging.make_logger import make_logger
+
 
 class Sql_wrapper:
     
@@ -11,6 +13,12 @@ class Sql_wrapper:
     def __init__(self,username:str,password:str,host:str,port:str,db_name:str):
         engine = SQLA.create_engine(f"postgresql://{username}:{password}@{host}:{port}/{db_name}")
         self.engine = engine
+
+        # Make `postgresql` logger
+
+        self.logger = make_logger(
+            logging_path="./postgresql.log",
+        )
 
     def execute_query(self,query:str) -> pd.DataFrame:
         """Will execute a query against a selected table.
@@ -26,14 +34,17 @@ class Sql_wrapper:
             Pandas data frame containing query output.
         """
         try:
-            con = self.engine.connect()
-            results = con.execute(query)
-            returns = results.fetchall()
+            self.logger.info(f"""
+            Executing query:
+                {query}
+            """)
+            with self.engine.connect() as con:
+                results = con.execute(query)
+                returns = results.fetchall()
+            self.logger.info("Query sucessfully executed")
             return pd.DataFrame(returns)
         except:
-            return "Query failed"
-        finally:
-            con.close()
+            self.logger.error("Query failed")
         
 
     def input_data(self,data:tuple,table:str):

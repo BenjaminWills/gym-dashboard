@@ -4,6 +4,7 @@ from tkinter.filedialog import askopenfile
 from PIL import Image, ImageTk
 
 root = Tk()  # create the base container
+root.geometry("+%d+%d" % (300, 40))  # Window placement
 
 # Canvas
 canvas = Canvas(root, width=600, height=300)
@@ -14,11 +15,11 @@ logo = Image.open("gym_gui/images/barbell.png")
 logo = ImageTk.PhotoImage(logo)
 logo_label = Label(image=logo)
 logo_label.image = logo
-logo_label.grid(column=1, row=0)
+logo_label.grid(column=0, row=0)
 
 # Instructions
 instructions = Label(root, text="Press the button below!", font="Raleway")
-instructions.grid(columnspan=3, column=0, row=1)
+instructions.grid(columnspan=3, column=1, row=0)
 
 # Browse function
 
@@ -33,6 +34,8 @@ def open_file():
 
         text_box = Text(root, height=10, width=50, padx=15, pady=15)
         text_box.insert(1.0, file.name)
+        text_box.tag_configure("center", justify="center")
+        text_box.tag_add("center", 1.0, "end")
         text_box.grid(column=1, row=3)
 
         browse_text.set("Select file...")
@@ -51,7 +54,7 @@ browse_btn = Button(
     width=15,
 )
 browse_text.set("Select file...")
-browse_btn.grid(column=1, row=2)
+browse_btn.grid(column=1, row=0)
 
 # Add additional depth
 canvas = Canvas(root, width=600, height=250)

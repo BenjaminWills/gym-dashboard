@@ -1,4 +1,5 @@
-postgresql
-psycopg2
-pandas
-numpy
+sqlalchemy # Query engine
+psycopg2 # Database engine
+pandas # Data processing
+numpy # Math in python
+pillow # Image processing

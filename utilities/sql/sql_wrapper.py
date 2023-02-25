@@ -15,6 +15,8 @@ class Sql_wrapper:
         engine = SQLA.create_engine(f"postgresql://{username}:{password}@{host}:{port}/{db_name}")
         self.engine = engine
 
+        self.db_name = db_name
+
         # Make `postgresql` logger
         mkdir_if_not_exists("./logs")
         self.logger = make_logger(
@@ -36,7 +38,7 @@ class Sql_wrapper:
         """
         try:
             self.logger.info(f"""
-            Executing query:
+            Executing query on {self.db_name}:
                 {query}
             """)
             with self.engine.connect() as con:

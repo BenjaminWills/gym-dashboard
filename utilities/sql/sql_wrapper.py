@@ -2,7 +2,7 @@ import pandas as pd
 import sqlalchemy as SQLA
 
 from utilities.logging.make_logger import make_logger
-from utilities.utility.utilities import mkdir_if_not_exists
+from utilities.utility.os_utilities import mkdir_if_not_exists
 
 
 class Sql_wrapper:

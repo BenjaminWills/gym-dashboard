@@ -27,9 +27,15 @@ def open_file():
     browse_text.set("loading...")
 
     file = askopenfile(parent=root, mode="rb", title="Choose a file!")
-
     if file:
-        print(file.name)
+
+        # Textbox
+
+        text_box = Text(root, height=10, width=50, padx=15, pady=15)
+        text_box.insert(1.0, file.name)
+        text_box.grid(column=1, row=3)
+
+        browse_text.set("Select file...")
 
 
 # Browse button
@@ -44,7 +50,7 @@ browse_btn = Button(
     height=2,
     width=15,
 )
-browse_text.set("Browse")
+browse_text.set("Select file...")
 browse_btn.grid(column=1, row=2)
 
 # Add additional depth

@@ -2,6 +2,7 @@ import pandas as pd
 import sqlalchemy as SQLA
 
 from utilities.logging.make_logger import make_logger
+from utilities.utility.utilities import mkdir_if_not_exists
 
 
 class Sql_wrapper:
@@ -15,9 +16,9 @@ class Sql_wrapper:
         self.engine = engine
 
         # Make `postgresql` logger
-
+        mkdir_if_not_exists("./logs")
         self.logger = make_logger(
-            logging_path="./postgresql.log",
+            logging_path="./log/postgresql.log",
         )
 
     def execute_query(self,query:str) -> pd.DataFrame:

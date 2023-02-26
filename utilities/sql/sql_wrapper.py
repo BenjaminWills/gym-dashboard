@@ -24,7 +24,7 @@ class Sql_wrapper:
         # Make `postgresql` logger
         mkdir_if_not_exists("./logs")
         self.logger = make_logger(
-            logging_path="./logs/postgresql.log",
+            logging_path="./logs/postgresql.log", logger_name="postgres"
         )
 
     def execute_query(self, query: str) -> pd.DataFrame:
@@ -52,8 +52,9 @@ class Sql_wrapper:
                 returns = results.fetchall()
             self.logger.info("Query sucessfully executed")
             return pd.DataFrame(returns)
-        except:
-            self.logger.error("Query failed")
+        except Exception as e:
+            self.logger.error("Query failed with stacktrace: ")
+            self.logger.error(e)
 
     def input_data(self, data: tuple, table: str):
 

@@ -43,7 +43,7 @@ class Sql_wrapper:
         try:
             self.logger.info(
                 f"""
-            Executing query on {self.db_name}:
+            Executing query on database: {self.db_name}:
                 {query}
             """
             )

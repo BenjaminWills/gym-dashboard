@@ -1,4 +1,4 @@
-from tkinter import Tk, Canvas, Label, Button, StringVar, Text
+from tkinter import Tk, Canvas, Label, Button, StringVar, Text, Entry
 from tkinter.filedialog import askopenfile
 
 from PIL import Image, ImageTk
@@ -19,10 +19,6 @@ class Home_window:
         logo_label.image = logo
         logo_label.grid(column=0, row=0)
 
-        # Instructions
-        instructions = Label(self.root, text="Press the button below!", font="Raleway")
-        instructions.grid(columnspan=3, column=1, row=0)
-
         # Browse button
         self.browse_text = StringVar()
         browse_btn = Button(
@@ -37,6 +33,10 @@ class Home_window:
         )
         self.browse_text.set("Select file...")
         browse_btn.grid(column=1, row=0)
+
+        # Entry box
+        entry = Entry(self.root)
+        entry.grid(column=1, row=1)
 
         # Add additional depth
         canvas = Canvas(self.root, width=600, height=250)

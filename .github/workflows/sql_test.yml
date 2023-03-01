@@ -3,10 +3,13 @@ name: Test SQL wrapper
 on: [push]
 
 jobs:
-  sql_test:
+  sql test:
     runs-on: ubuntu-latest
 
     steps:
 
     - name: checkout
       uses: actions/checkout@v3
+
+    - name: list directory contents
+      run: ls

@@ -28,11 +28,7 @@ jobs:
 
       - name: enter sql
         run: |
-          CREATE DATABASE test;
-          \c test;
-          CREATE TABLE test(id INT, name VARCHAR);
-          INSERT INTO test (1,'ben');
-          SELECT * FROM test;
+          docker ps
       
       - name: run test
         run: |

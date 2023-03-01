@@ -11,5 +11,14 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3
 
-    - name: list directory contents
-      run: ls
+    - name: Set up python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+        cache: 'pip'
+    
+    - name: install dependencies 
+      run: pip install -r requirements.txt
+    
+    - name: list installed dependencies
+      run: pip freeze

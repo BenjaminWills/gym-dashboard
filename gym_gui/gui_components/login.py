@@ -29,8 +29,8 @@ class Login_window:
         username_textbox.grid(row=1, column=1, padx=10, pady=10)
 
         # Insert password label
-        username_label = Label(text="Password:")
-        username_label.grid(row=2, column=0)
+        password_label = Label(text="Password:")
+        password_label.grid(row=2, column=0)
 
         # Insert textbox by password
         password_textbox = Text()
@@ -49,7 +49,7 @@ class Login_window:
     def submit(self):
         user = self.username.get(1.0, "end-1c")
         password = self.password.get(1.0, "end-1c")
-        user_pass_dict = {"user": user, "password": password}
+        user_pass_dict = {"username": user, "password": password}
         self.test.config(text=f"{user_pass_dict}")
 
 

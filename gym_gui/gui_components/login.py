@@ -1,23 +1,6 @@
 from tkinter import Tk, Canvas, Label, Text, Button, Frame
 from PIL import Image, ImageTk
 
-from get_utilities import utilities
-from utilities.sql.sql_wrapper import Sql_wrapper
-from gui_components.postgres_config import postgres_authentication
-
-
-class Validate_input:
-    def __init__(self, authentication: dict = postgres_authentication) -> None:
-        self.authentication = authentication
-        self.sql_client = Sql_wrapper(*postgres_authentication.values)
-
-    def validate_user_password(self, username: str, password: str) -> int:
-        if self.sql_client.execute_query(
-            f"SELECT * FROM users WHERE username = {username} AND password = {password}"
-        ):
-            return "authentication successful", 200
-        return "authentication unsuccessful", 400
-
 
 class Login_window:
     def __init__(self, master_root: Tk) -> None:

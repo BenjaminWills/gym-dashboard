@@ -14,10 +14,8 @@ class Sql_wrapper:
     def __init__(
         self, username: str, password: str, host: str, port: str, db_name: str
     ):
-        engine = SQLA.create_engine(
-            f"postgresql://{username}:{password}@{host}:{port}/{db_name}"
-        )
-        self.engine = engine
+
+        self.engine = self.__make_engine(username, password, host, port, db_name)
 
         self.db_name = db_name
 
@@ -26,6 +24,17 @@ class Sql_wrapper:
         self.logger = make_logger(
             logging_path="./logs/postgresql.log", logger_name="postgres"
         )
+
+    def __make_engine(
+        self, username: str, password: str, host: str, port: str, db_name: str
+    ):
+        connection_string = (
+            f"postgresql://{username}:{password}@{host}:{port}/{db_name}"
+        )
+        try:
+            return SQLA.create_engine(connection_string)
+        except Exception as e:
+            print(e.with_traceback())
 
     def execute_query(self, query: str) -> pd.DataFrame:
         """Will execute a query against a selected table.

@@ -13,3 +13,6 @@ A dashboard to track my gym progress. The dashboard reads from a `postgreSQL` da
 - Build home page GUI that will have a few options to open other windows that will all be classbased
 - Make a query interface that will be able to display output as a nice looking table in a window
 - Remake schema to correct it 
+- Make user login page for GUI
+- Make user login function for GUI
+- Figure out how to interract with postgres container with python

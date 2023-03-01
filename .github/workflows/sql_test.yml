@@ -28,7 +28,6 @@ jobs:
 
       - name: enter sql
         run: |
-          psql -U postgres
           CREATE DATABASE test;
           \c test;
           CREATE TABLE test(id INT, name VARCHAR);

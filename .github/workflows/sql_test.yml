@@ -5,7 +5,7 @@ on: [push]
 jobs:
   initialse_db:
     runs-on: ubuntu-latest
-    container: test_container
+    container: postgres
 
     services:
       postgres:
@@ -21,7 +21,6 @@ jobs:
 
 
     steps:
-
       - name: checkout
         uses: actions/checkout@v3
 

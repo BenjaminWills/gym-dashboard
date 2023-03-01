@@ -3,9 +3,9 @@ name: Test SQL wrapper
 on: [push]
 
 jobs:
-  initialse_db:
+  test_sql:
     runs-on: ubuntu-latest
-    container: postgres
+    container: python
 
     services:
       postgres:
@@ -19,16 +19,9 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
-
     steps:
       - name: checkout
         uses: actions/checkout@v3
-
-      - name: Set up python 3.9
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
-          cache: 'pip'
       
       - name: install dependencies 
         run: pip install -r requirements.txt

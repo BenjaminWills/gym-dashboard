@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   db:
-    image: postgres
+    image: postgres:latest
     restart: always
     environment:
       - POSTGRES_USER=admin
@@ -14,4 +14,4 @@ services:
 volumes:
   db_1:
     driver: local
-# Enter DB with psql -U postgres
+# Enter DB with psql postgres://admin:password@localhost:5432/gym_tracker

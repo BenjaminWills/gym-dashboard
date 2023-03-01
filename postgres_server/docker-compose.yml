@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: gym_application
     volumes:
-      - db_1:/var/lib/postgresql/data
+      - ./postgres:/docker-entrypoint-initdb.d
 
   adminer:
     image: adminer

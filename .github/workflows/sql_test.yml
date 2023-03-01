@@ -25,6 +25,15 @@ jobs:
       
       - name: install dependencies 
         run: pip install -r requirements.txt
+
+      - name: enter sql
+        run: |
+          psql -U postgres
+          CREATE DATABASE test;
+          \c test;
+          CREATE TABLE test(id INT, name VARCHAR);
+          INSERT INTO test (1,'ben');
+          SELECT * FROM test;
       
       - name: run test
         run: |

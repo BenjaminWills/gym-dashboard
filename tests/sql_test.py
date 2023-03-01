@@ -25,6 +25,11 @@ sql = Sql_wrapper(
 
 sql.execute_query(
     """
+
+CREATE DATABASE test_db;
+
+USING test_db;
+
 CREATE TABLE test_table(
     id INT,
     name VARCHAR

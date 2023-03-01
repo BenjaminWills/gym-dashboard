@@ -3,7 +3,7 @@ name: Test SQL wrapper
 on: [push]
 
 jobs:
-  sql test:
+  sql_test:
     runs-on: ubuntu-latest
 
     steps:

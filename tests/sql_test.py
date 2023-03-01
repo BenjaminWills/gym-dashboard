@@ -23,22 +23,6 @@ sql = Sql_wrapper(
     db_name="",
 )
 
-# sql.execute_query(
-#     """
-
-# CREATE DATABASE test_db;
-
-# USING test_db;
-
-# CREATE TABLE test_table(
-#     id INT,
-#     name VARCHAR
-# );
-
-# INSERT INTO test_table (1,"ben");
-# """
-# )
-
 queries = [
     "CREATE DATABASE test_db",
     "CREATE TABLE test_db.test_table(id INT,name VARCHAR)",

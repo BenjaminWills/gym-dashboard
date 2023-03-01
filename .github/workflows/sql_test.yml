@@ -31,7 +31,7 @@ jobs:
           python tests/sql_test.py \
           --username postgres \
           --password postgres \
-          --host localhost \
+          --host postgres \
           --port 5432 \
           --db_name test_2\
 

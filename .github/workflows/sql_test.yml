@@ -19,30 +19,28 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
-  sql_test:
-    runs-on: ubuntu-latest
 
     steps:
 
-    - name: checkout
-      uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
 
-    - name: Set up python 3.9
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
-        cache: 'pip'
-    
-    - name: install dependencies 
-      run: pip install -r requirements.txt
-    
-    - name: run test
-      run: |
-        python tests/sql_test.py \
-        --username postgres \
-        --password postgres \
-        --host localhost \
-        --port 5432 \
-        --db_name test_2\
-
+      - name: Set up python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          cache: 'pip'
       
+      - name: install dependencies 
+        run: pip install -r requirements.txt
+      
+      - name: run test
+        run: |
+          python tests/sql_test.py \
+          --username postgres \
+          --password postgres \
+          --host localhost \
+          --port 5432 \
+          --db_name test_2\
+
+        

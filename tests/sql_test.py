@@ -23,4 +23,4 @@ sql = Sql_wrapper(
     db_name=args.db_name,
 )
 
-print(sql.db_name)
+assert sql.db_name == "test", False

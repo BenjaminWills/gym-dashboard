@@ -20,7 +20,7 @@ sql = Sql_wrapper(
     password=args.password,
     host=args.host,
     port=args.port,
-    db_name=args.db_name,
+    db_name="",
 )
 
 sql.execute_query(

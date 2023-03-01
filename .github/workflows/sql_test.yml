@@ -35,6 +35,6 @@ jobs:
           --password postgres \
           --host postgres \
           --port 5432 \
-          --db_name test_2\
+          --db_name none
 
         

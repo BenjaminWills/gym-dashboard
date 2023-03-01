@@ -7,12 +7,9 @@ A dashboard to track my gym progress. The dashboard reads from a `postgreSQL` da
     <figcaption >figure 1: PostgreSQL schema</figcaption>
 </figure>
 
-### SQL Wrapper
+# TODO
 
-First we initialise the Sql wrapper with your respective credentials:
-
-```sh
-engine_connect_string = "dialect+driver://username:password@host:port/database"
-```
-
-The driver I'm using is `postgresql` and the engine is `psycopg2` but this need not be specified as it is the default.
+- Add github workflow to include tests for each section
+- Build home page GUI that will have a few options to open other windows that will all be classbased
+- Make a query interface that will be able to display output as a nice looking table in a window
+- Remake schema to correct it 

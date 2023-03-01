@@ -22,7 +22,7 @@ jobs:
     
     - name: run test
       run: |
-        python tests/sql_test \
+        python tests/sql_test.py \
         --username postgres \
         --password postgres \
         --host localhost \

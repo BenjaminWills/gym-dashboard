@@ -1,6 +1,14 @@
-from tkinter import Tk, Canvas, Label, Text, Button
+from tkinter import Tk, Canvas, Label, Text, Button, Frame
 
 from PIL import Image, ImageTk
+
+from get_utilities import utilities
+
+
+class Validate_input:
+    @staticmethod
+    def validate_user_password(username: str, password: str) -> int:
+        pass
 
 
 class Login_window:
@@ -24,18 +32,18 @@ class Login_window:
         username_label.grid(row=1, column=0)
 
         # Insert textbox by username
-        username_textbox = Text()
+        username_textbox = Text(height=1, width=20)
+        username_textbox.grid(row=1, column=1)
         self.username = username_textbox
-        username_textbox.grid(row=1, column=1, padx=10, pady=10)
 
         # Insert password label
         password_label = Label(text="Password:")
         password_label.grid(row=2, column=0)
 
         # Insert textbox by password
-        password_textbox = Text()
+        password_textbox = Text(height=1, width=20)
         self.password = password_textbox
-        password_textbox.grid(row=2, column=1, padx=10, pady=10)
+        password_textbox.grid(row=2, column=1)
 
         # Insert submit button to send request to database
         submit_button = Button(text="Submit", command=self.submit)

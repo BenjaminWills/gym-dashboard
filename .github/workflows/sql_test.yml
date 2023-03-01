@@ -18,6 +18,8 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        ports:
+          - 5432:5432
 
     steps:
       - name: checkout
@@ -25,10 +27,6 @@ jobs:
       
       - name: install dependencies 
         run: pip install -r requirements.txt
-
-      - name: enter sql
-        run: |
-          docker ps
       
       - name: run test
         run: |

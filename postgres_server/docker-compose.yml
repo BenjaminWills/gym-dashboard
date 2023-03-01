@@ -1,17 +1,22 @@
 version: "3.8"
 services:
-  db:
-    image: postgres:latest
+  postgres_db:
+    image: postgres:11.1
     restart: always
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=gym_tracker
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: gym_application
     ports:
-      - "5432:5432"
+      - 5432:5432
+    networks:
+      - app-tier
     volumes:
-      - db_1:/var/lib/postgresql/data
+      - ./postgres:/docker-entrypoint-initdb.d
 volumes:
   db_1:
     driver: local
+networks:
+  app-tier:
+    driver: bridge
 # Enter DB with psql postgres://admin:password@localhost:5432/gym_tracker

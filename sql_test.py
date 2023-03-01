@@ -14,7 +14,7 @@
 
 import sqlalchemy
 
-conn_string = "postgresql+psycopg2://admin:password@localhost:5432/gym_tracker"
+conn_string = "postgresql+psycopg2://admin:password@db/gym_application"
 
 engine = sqlalchemy.create_engine(conn_string)
 

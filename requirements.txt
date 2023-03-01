@@ -1,5 +1,5 @@
 sqlalchemy # Query engine
-psycopg2 # Database engine
+psycopg2-binary # Database engine
 pandas # Data processing
 numpy # Math in python
 pillow # Image processing

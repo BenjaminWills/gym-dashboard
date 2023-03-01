@@ -3,6 +3,22 @@ name: Test SQL wrapper
 on: [push]
 
 jobs:
+  initialse_db:
+    runs-on: ubuntu-latest
+    container: test_container
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USERNAME: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
   sql_test:
     runs-on: ubuntu-latest
 
@@ -28,4 +44,5 @@ jobs:
         --host localhost \
         --port 5432 \
         --db_name test_2\
+
       

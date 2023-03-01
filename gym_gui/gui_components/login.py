@@ -3,12 +3,12 @@ from PIL import Image, ImageTk
 
 from get_utilities import utilities
 from utilities.sql.sql_wrapper import Sql_wrapper
-from postgres_config import postgres_authentication
+from gui_components.postgres_config import postgres_authentication
 
 
 class Validate_input:
     def __init__(self, authentication: dict = postgres_authentication) -> None:
-        self.authentication = postgres_authentication
+        self.authentication = authentication
         self.sql_client = Sql_wrapper(*postgres_authentication.values)
 
     def validate_user_password(self, username: str, password: str) -> int:

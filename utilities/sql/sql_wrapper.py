@@ -51,7 +51,7 @@ class Sql_wrapper:
                 results = con.execute(query)
                 returns = results.fetchall()
             self.logger.info("Query sucessfully executed")
-            return pd.DataFrame(returns)
+            return returns
         except Exception as e:
             self.logger.error("Query failed with stacktrace: ")
             self.logger.error(e)

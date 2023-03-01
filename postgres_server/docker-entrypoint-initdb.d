@@ -8,4 +8,4 @@ CREATE TABLE users(
     height FLOAT
 );
 
-INSERT INTO TABLE users VALUES ("test","test",2,"07-03-2001",78.0,1.81);
+INSERT INTO users VALUES ("test","test",2,"07-03-2001",78.0,1.81);

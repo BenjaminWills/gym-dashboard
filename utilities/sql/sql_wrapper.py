@@ -37,7 +37,7 @@ class Sql_wrapper:
         except Exception as e:
             print(e.with_traceback())
 
-    def execute_query(self, query: str) -> pd.DataFrame:
+    def execute_read(self, query: str):
         """Will execute a query against a selected table.
 
         Parameters
@@ -62,6 +62,35 @@ class Sql_wrapper:
                 returns = results.fetchall()
             self.logger.info(f"Query sucessfully executed and returned \n {results}")
             return returns
+        except Exception as e:
+            self.logger.error("Query failed with stacktrace: ")
+            self.logger.error(e)
+
+    def execute_create(self, query: str):
+        """Will execute a query against a selected table.
+
+        Parameters
+        ----------
+        query : str
+            A string containing the query to be executed.
+
+        Returns
+        -------
+        pd.DataFrame
+            Pandas data frame containing query output.
+        """
+        try:
+            self.logger.info(
+                f"""
+            Executing query on database: {self.db_name}:
+                {query}
+            """
+            )
+            with self.engine.connect() as con:
+                con.execute(text(query))
+                con.commit()
+            self.logger.info(f"Query sucessfully executed")
+            return 200
         except Exception as e:
             self.logger.error("Query failed with stacktrace: ")
             self.logger.error(e)

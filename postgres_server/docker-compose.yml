@@ -1,6 +1,6 @@
 services:
   database:
-    image: postgres
+    image: docker.io/postgres:14
     ports:
       - 5432:5432
     restart: always
@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: gym_application
     volumes:
-      - ./postgres:/docker-entrypoint-initdb.d
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d
 
   adminer:
     image: adminer
@@ -18,8 +18,4 @@ services:
       - database
     ports:
       - 8080:8080
-
-volumes:
-  db_1:
-    driver: local
 # Enter DB with psql -U postgres

@@ -1,5 +1,6 @@
 import pandas as pd
 import sqlalchemy as SQLA
+from sqlalchemy import text
 
 from utilities.logging.make_logger import make_logger
 from utilities.utility.os_utilities import mkdir_if_not_exists
@@ -57,9 +58,9 @@ class Sql_wrapper:
             """
             )
             with self.engine.connect() as con:
-                results = con.execute(query)
+                results = con.execute(text(query))
                 returns = results.fetchall()
-            self.logger.info("Query sucessfully executed")
+            self.logger.info(f"Query sucessfully executed and returned \n {results}")
             return returns
         except Exception as e:
             self.logger.error("Query failed with stacktrace: ")

@@ -15,4 +15,5 @@ A dashboard to track my gym progress. The dashboard reads from a `postgreSQL` da
 - Remake schema to correct it 
 - Make user login page for GUI
 - Make user login function for GUI
-- Figure out how to interract with postgres container with python
+- Figure out how to interract with postgres container with python <- FIXED:
+  - Issue was that the service was running on brew too, so had to run brew service deacivate postgresql@v14 and remove it and also using `sqlalchemy.text`

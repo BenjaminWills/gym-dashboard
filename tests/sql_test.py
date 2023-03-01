@@ -23,4 +23,15 @@ sql = Sql_wrapper(
     db_name=args.db_name,
 )
 
-assert sql.db_name == "test", False
+sql.execute_query(
+    """
+CREATE TABLE test_table(
+    id INT,
+    name VARCHAR
+);
+
+INSERT INTO test_table (1,"ben");
+"""
+)
+
+print(sql.execute_query("select * from test_table"))

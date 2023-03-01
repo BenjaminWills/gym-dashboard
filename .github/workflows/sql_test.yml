@@ -20,5 +20,12 @@ jobs:
     - name: install dependencies 
       run: pip install -r requirements.txt
     
-    - name: list installed dependencies
-      run: pip freeze
+    - name: run test
+      run: |
+      python tests/sql_test \
+      --username postgres \
+      --password postgres \
+      --host localhost \
+      --port 5432 \
+      --db_name test\
+      

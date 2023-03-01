@@ -22,3 +22,5 @@ sql = Sql_wrapper(
     port=args.port,
     db_name=args.db_name,
 )
+
+print(sql.db_name)

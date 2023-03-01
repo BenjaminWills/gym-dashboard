@@ -22,10 +22,10 @@ jobs:
     
     - name: run test
       run: |
-      python tests/sql_test \
-      --username postgres \
-      --password postgres \
-      --host localhost \
-      --port 5432 \
-      --db_name test\
+        python tests/sql_test \
+        --username postgres \
+        --password postgres \
+        --host localhost \
+        --port 5432 \
+        --db_name test\
       

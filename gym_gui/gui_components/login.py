@@ -15,8 +15,8 @@ class Validate_input:
         if self.sql_client.execute_query(
             f"SELECT * FROM users WHERE username = {username} AND password = {password}"
         ):
-            return 200
-        return 400
+            return "authentication successful", 200
+        return "authentication unsuccessful", 400
 
 
 class Login_window:

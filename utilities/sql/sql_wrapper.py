@@ -63,7 +63,6 @@ class Sql_wrapper:
             return returns
         except Exception as e:
             self.logger.error("Query failed with stacktrace: ")
-            print(e.with_traceback())
             self.logger.error(e)
 
     def input_data(self, data: tuple, table: str):

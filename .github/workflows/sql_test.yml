@@ -37,4 +37,6 @@ jobs:
           --port 5432 \
           --db_name none
 
+      - name: display logs
+        run: cat logs/postgresql.log
         

@@ -1,6 +1,8 @@
 from tkinter import Tk, Canvas, Label, Text, Button, Frame
 from PIL import Image, ImageTk
 
+from gui_components.validation.validation import Validate_input
+
 
 class Login_window:
     def __init__(self, master_root: Tk) -> None:
@@ -50,6 +52,15 @@ class Login_window:
         password = self.password.get(1.0, "end-1c")
         user_pass_dict = {"username": user, "password": password}
         self.test.config(text=f"{user_pass_dict}")
+
+        validate = Validate_input()
+
+        validation_result = validate.validate_user_password(user, password)
+        print(validation_result)
+        if validation_result.get("response_code") == 200:
+            self.test.config(text=f"{user_pass_dict}")
+        else:
+            self.test.config(text=f"ACCESS DENIED")
 
 
 if __name__ == "__main__":

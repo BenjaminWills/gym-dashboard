@@ -1,7 +1,7 @@
 postgres_authentication = {
-    "username": "postgres",
-    "password": "postgres",
-    "host": "postgres",
+    "username": "admin",
+    "password": "password",
+    "host": "localhost",
     "port": 5432,
-    "db_name": "",
+    "db_name": "gym_application",
 }

@@ -43,24 +43,20 @@ class Login_window:
         submit_button.grid(row=3, column=1)
 
         # Test label
-        test = Label(text="")
-        self.test = test
-        test.grid(row=4, column=1)
+        response = Label(text="")
+        self.response = response
+        response.grid(row=4, column=1)
 
     def submit(self):
         user = self.username.get(1.0, "end-1c")
         password = self.password.get(1.0, "end-1c")
-        user_pass_dict = {"username": user, "password": password}
-        self.test.config(text=f"{user_pass_dict}")
-
         validate = Validate_input()
 
         validation_result = validate.validate_user_password(user, password)
-        print(validation_result)
         if validation_result.get("response_code") == 200:
-            self.test.config(text=f"{user_pass_dict}")
+            self.response.config(text=f"Access granted")
         else:
-            self.test.config(text=f"ACCESS DENIED")
+            self.response.config(text=f"Access denied")
 
 
 if __name__ == "__main__":

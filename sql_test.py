@@ -10,4 +10,4 @@ sql = Sql_wrapper(
 )
 
 if __name__ == "__main__":
-    print(sql.execute_query("SELECT * FROM users"))
+    print(sql.execute_read("SELECT * FROM users"))

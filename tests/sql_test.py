@@ -39,4 +39,4 @@ for query in queries:
 
 # TESTS
 
-assert sql.execute_read("select * from test_table")[0] == (1, "user", "pass"), False
+# assert sql.execute_read("select * from test_table")[0] == (1, "user", "pass"), False

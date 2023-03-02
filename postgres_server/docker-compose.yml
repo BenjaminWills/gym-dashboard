@@ -4,13 +4,10 @@ services:
     ports:
       - 5432:5432
     restart: always
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: gym_application
+    env_file:
+      - ./.env
     volumes:
       - data:/var/lib/postgresql/data
-      - ./init_db.sql:/docker-entry-point-initdb.d/init_db.sql
 
   adminer:
     image: adminer

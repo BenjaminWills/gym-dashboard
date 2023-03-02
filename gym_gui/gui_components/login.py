@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 
 from gui_components.validation.validation import Validate_input
 from gui_components.create_account import Create_account
+from gui_components.query import Query
 
 
 class Login_window:
@@ -63,6 +64,7 @@ class Login_window:
         validation_result = validate.validate_user_password(user, password)
         if validation_result.get("response_code") == 200:
             self.response.config(text=f"Access granted")
+            Query(self.root)
         else:
             self.response.config(text=f"Access denied")
 

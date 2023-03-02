@@ -17,8 +17,6 @@ class Query_table(Toplevel):
 
         for column in range(self.total_columns):
             for row in range(self.total_rows):
-                self.e = Entry(
-                    master_root, width=20, fg="blue", font=("Arial", 16, "bold")
-                )
+                self.e = Entry(self, width=20, fg="blue", font=("Arial", 16, "bold"))
                 self.e.grid(row=row, column=column)
                 self.e.insert(END, self.query_result[row][column])

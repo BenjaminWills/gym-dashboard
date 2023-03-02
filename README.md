@@ -22,3 +22,23 @@ A dashboard to track my gym progress. The dashboard reads from a `postgreSQL` da
   - Issue was that the service was running on brew too, so had to run `brew service deactivate postgresql@v14` and remove it and also using `sqlalchemy.text`
 - Make user login page for GUI
 - Made sql tests
+
+# HOW TO USE
+
+First `cd` into the `postgres_server` file and write the command:
+
+```shell
+docker compose up -d
+```
+
+This will run all the specified containers in the docker compose in `detatched` (`-d`) mode. Once this has been run, and 
+
+```shell
+docker ps
+```
+
+Shows a container running, we can cd out to the top level directory and run the GUI!
+
+```shell
+python gym_gui/gui.py
+```

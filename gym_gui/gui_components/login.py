@@ -10,13 +10,13 @@ class Login_window:
 
         self.root = master_root
 
-        root.title("login")
+        self.root.title("login")
         # Canvas
         canvas = Canvas(self.root, width=300, height=450)
         canvas.grid(columnspan=3, rowspan=5)
 
         # Insert barbell logo
-        logo = Image.open("images/barbell.png")
+        logo = Image.open("gym_gui/images/barbell.png")
         logo = ImageTk.PhotoImage(logo)
         logo_label = Label(image=logo)
         logo_label.image = logo
@@ -68,11 +68,3 @@ class Login_window:
 
     def create_account(self):
         Create_account(self.root)
-
-
-if __name__ == "__main__":
-    root = Tk()  # create the base container
-    root.geometry("+%d+%d" % (350, 40))  # Window placement
-    l = Login_window(root)
-
-    root.mainloop()

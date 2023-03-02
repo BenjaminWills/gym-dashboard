@@ -24,9 +24,8 @@ sql = Sql_wrapper(
 )
 
 queries = [
-    "CREATE DATABASE test_db",
-    "CREATE TABLE test_db.test_table(id INT,name VARCHAR)",
-    "INSERT INTO test_db.test_table (1,'ben')",
+    "CREATE TABLE test_table(id INT,name VARCHAR)",
+    "INSERT INTO test_table (1,'ben')",
 ]
 
 for query in queries:

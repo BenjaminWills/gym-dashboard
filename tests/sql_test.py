@@ -24,8 +24,14 @@ sql = Sql_wrapper(
 )
 
 queries = [
-    "CREATE TABLE test_table(id INT,name VARCHAR)",
-    "INSERT INTO test_table (1,'ben')",
+    """
+    CREATE TABLE IF NOT EXISTS test_table(
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(20),
+    password VARCHAR(20)
+    );
+    """,
+    "INSERT INTO test_table (username,password) VALUES ('user','pass');",
 ]
 
 for query in queries:

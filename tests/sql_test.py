@@ -30,6 +30,6 @@ queries = [
 ]
 
 for query in queries:
-    sql.execute_query(query)
+    sql.execute_create(query)
 
-print(sql.execute_query("select * from test_table"))
+print(sql.execute_read("select * from test_table"))

@@ -2,8 +2,6 @@ from tkinter import Toplevel, Tk, Entry, END
 
 from gui_components.validation.validation import Validate_input
 
-from typing import Tuple
-
 v = Validate_input()
 
 

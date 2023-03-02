@@ -13,8 +13,8 @@ A dashboard to track my gym progress. The dashboard reads from a `postgreSQL` da
 - Build home page GUI that will have a few options to open other windows that will all be classbased
 - Make a query interface that will be able to display output as a nice looking table in a window
 - Remake schema to correct it 
-- Make user login function for GUI
 - When docker container is intiated, create initial tables
+- Find a way to run the docker compose and then the gui in one command (desktop icon?)
 
 ## Fixed
 
@@ -22,6 +22,7 @@ A dashboard to track my gym progress. The dashboard reads from a `postgreSQL` da
   - Issue was that the service was running on brew too, so had to run `brew service deactivate postgresql@v14` and remove it and also using `sqlalchemy.text`
 - Make user login page for GUI
 - Made sql tests
+- Make user login function for GUI
 
 # HOW TO USE
 
@@ -42,3 +43,5 @@ Shows a container running, we can cd out to the top level directory and run the 
 ```shell
 python gym_gui/gui.py
 ```
+
+Note that the storage is persisted even when the `docker compose down` is run.

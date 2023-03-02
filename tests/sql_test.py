@@ -37,4 +37,6 @@ queries = [
 for query in queries:
     sql.execute_create(query)
 
-print(sql.execute_read("select * from test_table"))
+# TESTS
+
+assert sql.execute_read("select * from test_table")[0] == (1, "user", "pass"), False

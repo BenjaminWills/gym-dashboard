@@ -59,9 +59,14 @@ class Sql_wrapper:
             )
             with self.engine.connect() as con:
                 results = con.execute(text(query))
+                columns = tuple(results.keys())
                 returns = results.fetchall()
-            self.logger.info(f"Query sucessfully executed and returned \n {results}")
-            return returns
+            self.logger.info(
+                f"Query sucessfully executed and returned columns \n {columns}"
+            )
+            return_list = list(returns)
+            return_list.insert(0, columns)
+            return return_list
         except Exception as e:
             self.logger.error("Query failed with stacktrace: ")
             self.logger.error(e)

@@ -11,13 +11,13 @@ A dashboard to track my gym progress. The dashboard reads from a `postgreSQL` da
 
 - Add github workflow to include tests for each section
 - Build home page GUI that will have a few options to open other windows that will all be classbased
-- Make a query interface that will be able to display output as a nice looking table in a window
 - Remake schema to correct it 
 - When docker container is intiated, create initial tables
 - Find a way to run the docker compose and then the gui in one command (desktop icon?)
 
 ## Fixed
 
+- Make a query interface that will be able to display output as a nice looking table in a window
 - Figure out how to interract with postgres container with python <- FIXED:
   - Issue was that the service was running on brew too, so had to run `brew service deactivate postgresql@v14` and remove it and also using `sqlalchemy.text`
 - Make user login page for GUI

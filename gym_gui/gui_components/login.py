@@ -2,6 +2,7 @@ from tkinter import Tk, Canvas, Label, Text, Button, Toplevel
 from PIL import Image, ImageTk
 
 from gui_components.validation.validation import Validate_input
+from gui_components.create_account import Create_account
 
 
 class Login_window:
@@ -66,14 +67,7 @@ class Login_window:
             self.response.config(text=f"Access denied")
 
     def create_account(self):
-        new_window = Toplevel(self.root)
-        new_window.title("create account")
-
-        canvas = Canvas(new_window, width=300, height=450)
-        canvas.grid(columnspan=3, rowspan=3)
-
-        new_window_label = Label(text="test")
-        new_window_label.grid(row=0, column=0)
+        Create_account(self.root)
 
 
 if __name__ == "__main__":

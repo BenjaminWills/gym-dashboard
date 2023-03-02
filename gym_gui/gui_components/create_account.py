@@ -90,6 +90,12 @@ class Create_account(Toplevel):
         )
         create_account_button.grid(row=row_count, column=1)
 
+        row_count += 1
+        # Denial label
+        denial_label = Label(text="")
+        self.denial_label = denial_label
+        denial_label.grid(row=row_count, column=1)
+
     def __validate_user(self, username: str) -> int:
         return validation.available_field("username", username).get(
             "response_code", 400
@@ -115,7 +121,7 @@ class Create_account(Toplevel):
         INSERT INTO 
             users (username,password,email,height,dob)
         VALUES
-            ('{username}','{password}','{email}',{height},{dob})
+            ('{username}','{password}','{email}',{height},'{dob}'::DATE)
         """
         validation.sql_client.execute_create(insert_statement)
 
@@ -143,4 +149,15 @@ class Create_account(Toplevel):
             self.__insert_user(username, password, email, height, dob)
             # Close window on successful register
             self.destroy()
-            pass
+        else:
+            self.logger.error(
+                f"""
+            Could NOT create user with:
+                username: {username}
+                password: {password}
+                email: {email}
+                height:{height}
+                date of birth:{dob}
+            """
+            )
+            self.denial_label.config(text="username,password or email is taken")

@@ -1,4 +1,4 @@
-from tkinter import Tk, Canvas, Label, Text, Button, Frame
+from tkinter import Tk, Canvas, Label, Text, Button, Toplevel
 from PIL import Image, ImageTk
 
 from gui_components.validation.validation import Validate_input
@@ -9,9 +9,10 @@ class Login_window:
 
         self.root = master_root
 
+        root.title("login")
         # Canvas
         canvas = Canvas(self.root, width=300, height=450)
-        canvas.grid(columnspan=3, rowspan=4)
+        canvas.grid(columnspan=3, rowspan=5)
 
         # Insert barbell logo
         logo = Image.open("images/barbell.png")
@@ -42,6 +43,12 @@ class Login_window:
         submit_button = Button(text="Submit", command=self.submit)
         submit_button.grid(row=3, column=1)
 
+        # Create account button
+        create_account_button = Button(
+            text="Create account", command=self.create_account
+        )
+        create_account_button.grid(row=5, column=1)
+
         # Test label
         response = Label(text="")
         self.response = response
@@ -57,6 +64,16 @@ class Login_window:
             self.response.config(text=f"Access granted")
         else:
             self.response.config(text=f"Access denied")
+
+    def create_account(self):
+        new_window = Toplevel(self.root)
+        new_window.title("create account")
+
+        canvas = Canvas(new_window, width=300, height=450)
+        canvas.grid(columnspan=3, rowspan=3)
+
+        new_window_label = Label(text="test")
+        new_window_label.grid(row=0, column=0)
 
 
 if __name__ == "__main__":

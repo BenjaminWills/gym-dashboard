@@ -1,4 +1,4 @@
-from tkinter import Tk, Canvas, Label, Text, Button, Toplevel
+from tkinter import Tk, Canvas, Label, Text, Button
 from PIL import Image, ImageTk
 
 from gui_components.validation.validation import Validate_input

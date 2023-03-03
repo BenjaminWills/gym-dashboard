@@ -11,7 +11,7 @@ class Query_table(Toplevel):
         self.title("Query result")
 
         # Set geometry of window
-        self.geometry("400x250")
+        self.geometry("400x400")
 
         # Return query result
         self.query_result = v.sql_client.execute_read(query)
@@ -23,13 +23,20 @@ class Query_table(Toplevel):
         columns = len(self.query_result[0])
 
         # Initialise the tree
-        tree_table = ttk.Treeview(self, selectmode="browse")
+        tree_table = ttk.Treeview(
+            self,
+            selectmode="browse",
+            columns=self.columns,
+            height=rows,
+            show="headings",
+        )
         tree_table.grid(row=4, column=1, columnspan=4, padx=5, pady=20)
 
-        tree_table["height"] = 4
-        tree_table["columns"] = self.columns
-        tree_table["show"] = "headings"
-
+        # format tree columns
+        tree_table.column("#0", width=120, minwidth=25)
         for column in self.columns:
             tree_table.column(column, anchor="c", width=70)
             tree_table.heading(column, text=column)
+
+        for iid, row in enumerate(self.data):
+            tree_table.insert("", "end", values=(1, 2, 3, 4, 5, 6), iid=iid)

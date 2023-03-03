@@ -41,6 +41,6 @@ for query in queries:
 
 print(
     sql.execute_read(
-        "select * from information_schema.tables where table_schema='public"
+        "select * from information_schema.tables where table_schema ='public'"
     )
 )

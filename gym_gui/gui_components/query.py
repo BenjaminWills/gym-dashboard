@@ -20,7 +20,7 @@ class Query(Toplevel):
         query_label.grid(row=0, column=0, columnspan=3)
 
         # Insert query textbox
-        query_textbox = Text(self, height=20, width=20)
+        query_textbox = Text(self, height=20, width=50)
         query_textbox.grid(row=1, column=1)
         self.query = query_textbox
 

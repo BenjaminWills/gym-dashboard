@@ -60,7 +60,12 @@ class Validate_input:
         WHERE {field} = '{username}'
         """
 
-        if not self.sql_client.execute_read(available_field_query):
+        available_field_query_result = self.sql_client.execute_read(
+            available_field_query
+        )
+        available_field_query_result.pop(0)  # Remove columns
+
+        if not available_field_query_result:
             response = self.__make_response_body(f"{field} available", 200)
             self.logger.info(response)
             return response

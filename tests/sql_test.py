@@ -39,8 +39,28 @@ for query in queries:
 
 # TESTS
 
-print(
-    sql.execute_read(
-        "select * from information_schema.tables where table_schema ='public'"
+assert (
+    len(
+        sql.execute_read(
+            """
+    SELECT
+        *
+    FROM
+        information_schema.tables
+    WHERE
+        table_name = 'test_table'
+    """
+        )[1]
     )
-)
+    == 2
+), "Table creation failed"
+assert len(
+    sql.execute_read(
+        """
+        SELECT 
+            *
+        FROM 
+            test_table
+        """
+    )
+), "Table read failed"

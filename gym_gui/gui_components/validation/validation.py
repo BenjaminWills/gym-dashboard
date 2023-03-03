@@ -24,8 +24,7 @@ class Validate_input:
         return {"response": response, "response_code": response_code}
 
     def validate_user_password(self, username: str, password: str) -> Dict[str, str]:
-        if self.sql_client.execute_read(
-            f"""
+        user_password_check_query = f"""
             SELECT
                 *
             FROM
@@ -34,13 +33,23 @@ class Validate_input:
                 username = '{username}' 
                 AND 
                 password = '{password}'"""
-        ):
+
+        user_password_check_result = self.sql_client.execute_read(
+            user_password_check_query
+        )
+
+        user_password_check_result.pop(
+            0
+        )  # First element is always the column names, thus we remove it to check if query is truly empty
+
+        if user_password_check_result != []:
             response = self.__make_response_body("authentication successful", 200)
             self.logger.info(response)
             return response
-        response = self.__make_response_body("authentication unsuccessful", 400)
-        self.logger.error(response)
-        return response
+        else:
+            response = self.__make_response_body("authentication unsuccessful", 400)
+            self.logger.error(response)
+            return response
 
     def available_field(self, field: str, username: str) -> Dict[str, str]:
         available_field_query = f"""

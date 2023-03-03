@@ -36,7 +36,7 @@ jobs:
           --password postgres \
           --host postgres \
           --port 5432 \
-          --db_name none
+          --db_name test_db
 
       - name: display logs
         run: cat logs/postgresql.log

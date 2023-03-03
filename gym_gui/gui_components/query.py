@@ -24,7 +24,7 @@ class Query(Toplevel):
         query_textbox.grid(row=1, column=1, sticky="nwes")
         self.query = query_textbox
 
-        # Add scrollers
+        # Add vertical scroller
         ys = ttk.Scrollbar(self, orient="vertical", command=query_textbox.yview)
         query_textbox["yscrollcommand"] = ys.set
         ys.grid(row=1, column=2, sticky="ns")

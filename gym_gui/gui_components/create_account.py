@@ -92,7 +92,7 @@ class Create_account(Toplevel):
 
         row_count += 1
         # Denial label
-        denial_label = Label(self, text="")
+        denial_label = Label(self, text="", pady=5, padx=5)
         self.denial_label = denial_label
         denial_label.grid(row=row_count, column=1)
 

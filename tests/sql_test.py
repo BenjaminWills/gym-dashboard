@@ -39,4 +39,8 @@ for query in queries:
 
 # TESTS
 
-print(sql.execute_read("select * from test_table"))
+print(
+    sql.execute_read(
+        "select * from information_schema.tables where table_schema='public"
+    )
+)

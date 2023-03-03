@@ -17,11 +17,21 @@ from tkinter.filedialog import asksaveasfile
 
 from gui_components.validation.validation import Validate_input
 
+from utilities.logging.make_logger import make_logger
+from utilities.utility.os_utilities import mkdir_if_not_exists
+
 v = Validate_input()
 
 
 class Query_table(Toplevel):
     def __init__(self, master_root: Tk, query: str) -> None:
+
+        # Create logger for file saving
+        mkdir_if_not_exists("./logs")
+        self.logger = make_logger(
+            logging_path="./logs/gui.log", logger_name="save file"
+        )
+
         super().__init__(master=master_root)
 
         # Window title
@@ -29,6 +39,7 @@ class Query_table(Toplevel):
 
         # Read query
         self.query_result = v.sql_client.execute_read(query)
+        self.query = query
 
         # Create frame
         query_frame = Frame(self)
@@ -87,8 +98,14 @@ class Query_table(Toplevel):
         )
         if file:
             file_path = file.name
-
             with open(file_path, mode="w") as outfile:
                 writer = csv.writer(outfile, delimiter=",")
                 for row in self.query_result:
                     writer.writerow(row)
+            self.logger.info(
+                f"""
+            Query with body: 
+                {self.query}
+            Has been successfully saved to {file_path}
+            """
+            )

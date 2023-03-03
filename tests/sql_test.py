@@ -50,17 +50,20 @@ assert (
     WHERE
         table_name = 'test_table'
     """
-        )[1]
+        )
     )
     == 2
 ), "Table creation failed"
-assert len(
-    sql.execute_read(
-        """
+assert (
+    len(
+        sql.execute_read(
+            """
         SELECT 
             *
         FROM 
             test_table
         """
+        )
     )
+    == 2
 ), "Table read failed"

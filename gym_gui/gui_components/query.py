@@ -1,4 +1,4 @@
-from tkinter import Toplevel, Tk, Text, Canvas, Label, Button
+from tkinter import Toplevel, Tk, Text, Canvas, Label, Button, ttk
 
 from gui_components.table import Query_table
 
@@ -13,16 +13,21 @@ class Query(Toplevel):
 
         # Canvas
         canvas = Canvas(self, width=300, height=450)
-        canvas.grid(columnspan=3, rowspan=5)
+        canvas.grid(columnspan=3, rowspan=6)
 
         # Insert query label
         query_label = Label(self, text="Query:")
         query_label.grid(row=0, column=0, columnspan=3)
 
         # Insert query textbox
-        query_textbox = Text(self, height=20, width=50)
-        query_textbox.grid(row=1, column=1)
+        query_textbox = Text(self, height=10, width=50, wrap="none")
+        query_textbox.grid(row=1, column=1, sticky="nwes")
         self.query = query_textbox
+
+        # Add scrollers
+        ys = ttk.Scrollbar(self, orient="vertical", command=query_textbox.yview)
+        query_textbox["yscrollcommand"] = ys.set
+        ys.grid(row=1, column=2, sticky="ns")
 
         # Execute query button
         execute_query_button = Button(self, text="Execute SQL", command=self.execute)

@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS "gym"."weight" (
 );
 
 CREATE TABLE IF NOT EXISTS "gym"."splits" (
-  "split_id" INT PRIMARY KEY,
+  "split_id" SERIAL PRIMARY KEY,
   "split_name" VARCHAR(20)
 );
 

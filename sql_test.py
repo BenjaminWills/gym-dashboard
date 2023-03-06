@@ -9,28 +9,13 @@ sql = Sql_wrapper(
     db_name="gym_application",
 )
 
-table_creation_query = """
-    CREATE TABLE IF NOT EXISTS 
-        users(
-            id SERIAL PRIMARY KEY,
-            username VARCHAR(20),
-            password VARCHAR(20),
-            email VARCHAR(20),
-            height FLOAT,
-            dob DATE
-        );"""
+with open("postgres_server/init_gym_application.sql") as sql_document:
+    sql_code = sql_document.read()
 
-table_insertion_query = """
-INSERT INTO 
-    users (username,password,email,height,dob)
-VALUES
-    ('test_user','test_password','email@email.com',181,'07-03-2001'::date)
-"""
-t = "test_user"
-p = "test_password"
+sql_code = sql_code.replace("\n", "")
+
+creation_queries = sql_code.split(";")
+
 if __name__ == "__main__":
-    # sql.execute_create("DELETE FROM users")
-    # sql.execute_create("DROP TABLE users")
-    # sql.execute_create(table_creation_query)
-    # sql.execute_create(table_insertion_query)
-    print(sql.execute_read("SELECT * FROM users"))
+    for query in creation_queries:
+        sql.execute_create(query)

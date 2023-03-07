@@ -4,7 +4,7 @@ CREATE SCHEMA IF NOT EXISTS "gym";
 
 CREATE TABLE IF NOT EXISTS "admin"."users" (
   "id" SERIAL PRIMARY KEY,
-  "username" VARCHAR(20),
+  "username" VARCHAR(20) UNIQUE,
   "password" VARCHAR(20),
   "email" VARCHAR(20),
   "first_name" VARCHAR(20),
@@ -24,11 +24,11 @@ CREATE TABLE IF NOT EXISTS "gym"."weight" (
 
 CREATE TABLE IF NOT EXISTS "gym"."splits" (
   "split_id" SERIAL PRIMARY KEY,
-  "split_name" VARCHAR(20)
+  "split_name" VARCHAR(20) UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS "gym"."workouts" (
-  "split_id" INT PRIMARY KEY,
+  "split_id" INT,
   "split_day" INT,
   "exercise" VARCHAR(20)
 );

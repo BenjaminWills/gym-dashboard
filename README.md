@@ -12,6 +12,8 @@ A dashboard to track my gym progress. The dashboard reads from a `postgreSQL` da
 - Remake schema to correct it 
 - When docker container is intiated, create initial tables
 - Find a way to run the docker compose and then the gui in one command (desktop icon?)
+- Create a role for each new user created
+- restrict access to admin schema
 
 ## Fixed
 

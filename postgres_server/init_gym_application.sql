@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS "admin"."users" (
   "id" SERIAL PRIMARY KEY,
   "username" VARCHAR(20) UNIQUE,
   "password" VARCHAR(20),
-  "email" VARCHAR(20),
+  "email" VARCHAR(100),
   "first_name" VARCHAR(20),
   "last_name" VARCHAR(20),
   "DOB" DATE,

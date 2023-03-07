@@ -64,14 +64,24 @@ class Create_account(Toplevel):
         email_textbox.grid(row=row_count, column=1)
 
         row_count += 1
-        # Insert height label
-        height_label = Label(self, text="Height:")
-        height_label.grid(row=row_count, column=0)
+        # Ins first name label
+        first_name_label = Label(self, text="First name:")
+        first_name_label.grid(row=row_count, column=0)
 
-        # Insert height textbox
-        height_textbox = Text(self, height=1, width=20)
-        self.height = height_textbox
-        height_textbox.grid(row=row_count, column=1)
+        # Ins first name textbox
+        first_name_textbox = Text(self, height=1, width=20)
+        self.first_name = first_name_textbox
+        first_name_textbox.grid(row=row_count, column=1)
+
+        row_count += 1
+        # Ins last name label
+        last_name_label = Label(self, text="Last name:")
+        last_name_label.grid(row=row_count, column=0)
+
+        # Ins last name textbox
+        last_name_textbox = Text(self, height=1, width=20)
+        self.last_name = last_name_textbox
+        last_name_textbox.grid(row=row_count, column=1)
 
         row_count += 1
         # Insert DOB label
@@ -82,6 +92,26 @@ class Create_account(Toplevel):
         dob_entry = DateEntry(self)
         self.dob = dob_entry
         dob_entry.grid(row=row_count, column=1)
+
+        row_count += 1
+        # Insert height label
+        height_label = Label(self, text="Height (cm):")
+        height_label.grid(row=row_count, column=0)
+
+        # Insert height textbox
+        height_textbox = Text(self, height=1, width=20)
+        self.height = height_textbox
+        height_textbox.grid(row=row_count, column=1)
+
+        row_count += 1
+        # Insert weight label
+        weight_label = Label(self, text="Weight (kg):")
+        weight_label.grid(row=row_count, column=0)
+
+        # Insert weight textbox
+        weight_textbox = Text(self, height=1, width=20)
+        self.weight = weight_textbox
+        weight_textbox.grid(row=row_count, column=1)
 
         row_count += 1
         # Insert submit button
@@ -114,14 +144,17 @@ class Create_account(Toplevel):
         username: str,
         password: str,
         email: str,
+        first_name: str,
+        last_name: str,
+        dob,
         height: float,
-        dob: date,
+        weight: float,
     ):
         insert_statement = f"""
         INSERT INTO 
-            users (username,password,email,height,dob)
+            users (username,password,email,first_name,last_name,"DOB",height,weight)
         VALUES
-            ('{username}','{password}','{email}',{height},'{dob}'::DATE)
+            ('{username}','{password}','{email}','{first_name}','{last_name}','{dob}'::DATE,{height},{weight})
         """
         validation.sql_client.execute_create(insert_statement)
 
@@ -129,8 +162,11 @@ class Create_account(Toplevel):
         username = self.username.get(1.0, "end-1c")
         password = self.password.get(1.0, "end-1c")
         email = self.email.get(1.0, "end-1c")
-        height = self.height.get(1.0, "end-1c")
+        first_name = self.first_name.get(1.0, "end-1c")
+        last_name = self.last_name.get(1.0, "end-1c")
         dob = self.dob.get_date()
+        height = self.height.get(1.0, "end-1c")
+        weight = self.weight.get(1.0, "end-1c")
         if (
             self.__validate_email(email) == 200
             and self.__validate_pass(password) == 200
@@ -142,11 +178,16 @@ class Create_account(Toplevel):
                 username: {username}
                 password: {password}
                 email: {email}
-                height:{height}
-                date of birth:{dob}
+                first name: {first_name}
+                last name: {last_name}
+                date of birth: {dob}
+                height: {height}
+                weight: {weight}
             """
             )
-            self.__insert_user(username, password, email, height, dob)
+            self.__insert_user(
+                username, password, email, first_name, last_name, dob, height, weight
+            )
             # Close window on successful register
             self.destroy()
         else:

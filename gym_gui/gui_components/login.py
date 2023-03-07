@@ -1,4 +1,4 @@
-from tkinter import Tk, Canvas, Label, Text, Button, Toplevel
+from tkinter import Tk, Canvas, Label, Text, Button, Entry
 from PIL import Image, ImageTk
 
 from gui_components.validation.validation import Validate_input
@@ -37,7 +37,7 @@ class Login_window:
         password_label.grid(row=2, column=0)
 
         # Insert textbox by password
-        password_textbox = Text(height=1, width=20)
+        password_textbox = Entry(width=10, show="*")
         self.password = password_textbox
         password_textbox.grid(row=2, column=1)
 
@@ -58,7 +58,7 @@ class Login_window:
 
     def submit(self):
         user = self.username.get(1.0, "end-1c")
-        password = self.password.get(1.0, "end-1c")
+        password = self.password.get()
         validate = Validate_input()
 
         validation_result = validate.validate_user_password(user, password)

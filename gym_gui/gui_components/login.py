@@ -3,7 +3,6 @@ from PIL import Image, ImageTk
 
 from gui_components.validation.validation import Validate_input
 from gui_components.create_account import Create_account
-from gui_components.query import Query
 from gui_components.account_window import Account_home
 
 
@@ -65,7 +64,19 @@ class Login_window:
         validation_result = validate.validate_user_password(user, password)
         if validation_result.get("response_code") == 200:
             self.response.config(text=f"Access granted")
-            Account_home(self.root)
+
+            user_tuple = validate.sql_client.execute_read(
+                f"""
+                SELECT
+                    *
+                FROM
+                    users
+                WHERE username = '{user}'
+                """
+            )
+            user_columns, user_info = user_tuple[0], user_tuple[1]
+            user_dict = dict(zip(user_columns, user_info))
+            Account_home(self.root, user_dict)
         else:
             self.response.config(text=f"Access denied")
 

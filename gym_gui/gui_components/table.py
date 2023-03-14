@@ -1,4 +1,4 @@
-import csv
+import csv, json
 
 from tkinter import (
     Toplevel,
@@ -92,6 +92,12 @@ class Query_table(Toplevel):
         )
         save_csv_button.grid(row=self.total_rows + 1, columnspan=2, column=0)
 
+        # Save output to json button
+        save_json_button = Button(
+            second_frame, text="Save as JSON", command=self.save_output_as_json
+        )
+        save_json_button.grid(row=self.total_rows + 2, columnspan=2, column=0)
+
     def save_output_as_csv(self):
         file = asksaveasfile(
             parent=self.second_frame, initialfile="query", defaultextension=".csv"
@@ -108,4 +114,29 @@ class Query_table(Toplevel):
                 {self.query}
             Has been successfully saved to {file_path}
             """
+            )
+
+    def save_output_as_json(self):
+        file = asksaveasfile(
+            parent=self.second_frame, initialfile="query", defaultextension=".json"
+        )
+        if file:
+            file_path = file.name
+            with open(file_path, "w") as outfile:
+                columns = self.query_result[0]
+                lines = []
+                for index, result in enumerate(self.query_result):
+                    if index >= 1:
+                        entry = dict(zip(columns, result))
+
+                        lines.append(entry)
+                json_dict = {"rows": lines}
+                outfile.write(json.dumps(json_dict, indent=4, default=str))
+
+            self.logger.info(
+                f"""
+            Query with body:
+                {self.query}
+            Has been successfully saved to {file_path}
+                """
             )

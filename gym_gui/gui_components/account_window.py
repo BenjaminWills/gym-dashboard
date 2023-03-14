@@ -1,8 +1,7 @@
 from tkinter import Toplevel, Tk, Button, Canvas, Label
 
 from gym_gui.gui_components.query import Query
-
-import json
+from gym_gui.gui_components.add_workout import Add_workout
 
 
 class Account_home(Toplevel):
@@ -12,7 +11,7 @@ class Account_home(Toplevel):
         self.user_info = user_info
 
         super().__init__(master_root)
-        self.title("query page")
+        self.title(f"{user_info['username']}'s home page")
 
         # Canvas
         canvas = Canvas(self, width=300, height=450)
@@ -29,6 +28,12 @@ class Account_home(Toplevel):
         )
         execute_query_button.grid(row=row, column=1)
 
+        # Add workout button
+        execute_query_button = Button(
+            self, text="Add a workout", command=self.add_workout
+        )
+        execute_query_button.grid(row=row, column=2)
+
     def execute(self):
         Query(self.root)
 
@@ -40,3 +45,6 @@ class Account_home(Toplevel):
             value_label.grid(row=row, column=1)
             row += 1
         return row
+
+    def add_workout(self):
+        Add_workout(self.root)

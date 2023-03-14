@@ -24,6 +24,7 @@ A dashboard to track my gym progress. The dashboard reads from a `postgreSQL` da
 - Make user login page for GUI
 - Made sql tests
 - Make user login function for GUI
+- Add save to JSON for queries
 
 # HOW TO USE
 

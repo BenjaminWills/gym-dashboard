@@ -14,6 +14,7 @@ A dashboard to track my gym progress. The dashboard reads from a `postgreSQL` da
 - Find a way to run the docker compose and then the gui in one command (desktop icon?)
 - Create a role for each new user created
 - restrict access to admin schema
+- add split updating page where you choose the split and the day and fill in each exercise
 
 ## Fixed
 

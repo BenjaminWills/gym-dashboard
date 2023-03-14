@@ -19,11 +19,14 @@ class Add_workout(Toplevel):
         split_menu = StringVar()
         split_menu.set("Select a split")
 
-        menu = OptionMenu(self, split_menu, *splits)
+        menu = OptionMenu(self, split_menu, *splits, command=self.choose_day)
         menu.grid(row=0, column=1)
 
     def get_splits(self):
-        return ["full body", "push pull legs"]
+        return ["Select a split", "full body", "push pull legs"]
+
+    def choose_day(self):
+        pass
 
     def get_full_body_split(self) -> Dict[int, List[str]]:
         return {
